@@ -1,10 +1,12 @@
+const openRouterAPIKey = process.env.OPENROUTER_API_KEY;
+
 async function generateTopic() {
     let prompt = `Generate only a three words topic for an article, you should not explain anything, just give me the words.`; 
     const resp = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer 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`,
+        'Authorization': `Bearer ${openRouterAPIKey}`,
         },
         body: JSON.stringify({
         model: 'tngtech/deepseek-r1t2-chimera:free',
@@ -26,7 +28,7 @@ async function generateArticle(topic) {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer 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`,
+        'Authorization': `Bearer ${openRouterAPIKey}`,
         },
         body: JSON.stringify({
         model: 'tngtech/deepseek-r1t2-chimera:free',
