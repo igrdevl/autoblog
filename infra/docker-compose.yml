@@ -33,6 +33,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123
       POSTGRES_DB: blog_db
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
 
   frontend:
     image: 204803176565.dkr.ecr.eu-north-1.amazonaws.com/autoblog/frontend:latest
