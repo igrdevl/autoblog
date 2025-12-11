@@ -21,9 +21,7 @@ services:
 
 
   backend:
-    build:
-      context: ../backend
-      dockerfile: Dockerfile
+    image: 204803176565.dkr.ecr.eu-north-1.amazonaws.com/autoblog/backend:latest
     container_name: backend
     ports:
       - "3000:3000"
@@ -37,14 +35,14 @@ services:
       POSTGRES_DB: blog_db
 
   frontend:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
+    image: 204803176565.dkr.ecr.eu-north-1.amazonaws.com/autoblog/frontend:latest
     container_name: frontend
     ports:
       - "5173:5173"
     depends_on:
       - backend
+    environment:
+      - REACT_APP_BACKEND_URL=http://13.53.36.72:3000
 
 volumes:
   postgres_data:
