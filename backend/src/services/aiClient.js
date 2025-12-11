@@ -4,7 +4,7 @@ async function generateTopic() {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer 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`,
+        'Authorization': `Bearer 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`,
         },
         body: JSON.stringify({
         model: 'tngtech/deepseek-r1t2-chimera:free',
@@ -16,6 +16,7 @@ async function generateTopic() {
         })
     });
     const data = await resp.json();
+    console.log(data);
     return data.choices[0].message.content;
 }
 
@@ -25,7 +26,7 @@ async function generateArticle(topic) {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer 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`,
+        'Authorization': `Bearer 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`,
         },
         body: JSON.stringify({
         model: 'tngtech/deepseek-r1t2-chimera:free',
@@ -38,6 +39,7 @@ async function generateArticle(topic) {
         })
     });
     const data = await resp.json();
+    console.log(data);
     return data.choices[0].message.content;
 }
 

@@ -38,7 +38,7 @@ services:
     image: 204803176565.dkr.ecr.eu-north-1.amazonaws.com/autoblog/frontend:latest
     container_name: frontend
     ports:
-      - "5173:5173"
+      - "80:5173"
     depends_on:
       - backend
     environment:
