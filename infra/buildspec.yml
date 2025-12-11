@@ -1,0 +1,29 @@
+version: 0.2
+
+env:
+  variables:
+    AWS_REGION: "us-east-1"
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 123456789.dkr.ecr.$AWS_REGION.amazonaws.com
+
+  build:
+    commands:
+      - echo Building Docker images...
+      - docker build -t my-frontend ./frontend
+      - docker build -t my-backend ./backend
+      
+      # Tagging images
+      - docker tag my-frontend:latest 123456789.dkr.ecr.$AWS_REGION.amazonaws.com/my-frontend:latest
+      - docker tag my-backend:latest 123456789.dkr.ecr.$AWS_REGION.amazonaws.com/my-backend:latest
+
+  post_build:
+    commands:
+      - echo Pushing images to ECR...
+      - docker push 123456789.dkr.ecr.$AWS_REGION.amazonaws.com/my-frontend:latest
+      - docker push 123456789.dkr.ecr.$AWS_REGION.amazonaws.com/my-backend:latest
+      - echo Done!
