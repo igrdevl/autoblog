@@ -4,7 +4,7 @@ import { saveArticle } from './src/services/articleJob.js';
 
 console.log("Setting cron schedules...");
 
-cron.schedule("0 8 * * *", async () => {
+cron.schedule("*/1 * * * *", async () => {
     try {
         const title = await aiClientService.generateTopic();
         console.log("Titulo gerado:", title);
